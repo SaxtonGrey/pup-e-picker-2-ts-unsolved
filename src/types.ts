@@ -9,3 +9,19 @@ export const dogSchema = z.object({
 });
 
 export type Dog = z.infer<typeof dogSchema>;
+
+export type TSelectedComponent =
+  | "dogs"
+  | "favorited"
+  | "unfavorited"
+  | "createDogForm";
+
+export type TDogProvider = {
+  allDogs: Dog[];
+  isLoading: boolean;
+  PostDog: (newDog: Omit<Dog, "id">) => Promise<void>;
+  deleteDogRequest: (id: number) => Promise<void>;
+  patchFavoriteDog: (newDogData: Dog, id: number) => Promise<void>;
+  selectedComponent: TSelectedComponent;
+  handleComponentChange: (componentName: TSelectedComponent) => void;
+};
