@@ -4,14 +4,14 @@ import { Dog } from "../types";
 import { useDogs } from "../Providers/DogsProvider";
 
 export const CreateDogForm = () => {
-  const { PostDog } = useDogs();
+  const { postDog, isLoading } = useDogs();
   const [nameInput, setNameInput] = useState<string>("");
   const [descriptionInput, setDescriptionInput] = useState<string>("");
   const [pictureValue, setPictureValue] = useState<string>(
     dogPictures.BlueHeeler
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newDog: Dog = {
@@ -21,10 +21,11 @@ export const CreateDogForm = () => {
       isFavorite: false,
       id: 0,
     };
-    PostDog(newDog);
-    setNameInput("");
-    setDescriptionInput("");
-    setPictureValue(dogPictures.BlueHeeler);
+    try {
+      await postDog(newDog);
+    } catch (error) {
+      console.error("Error Posting Dog: ", error);
+    }
   };
 
   return (
@@ -33,14 +34,16 @@ export const CreateDogForm = () => {
       id="create-dog-form"
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit(e);
+        handleSubmit(e).catch((error) =>
+          console.error("Error Handling Submit: ", error)
+        );
       }}
     >
       <h4>Create a New Dog</h4>
       <label htmlFor="name">Dog Name</label>
       <input
         type="text"
-        disabled={false}
+        disabled={isLoading}
         value={nameInput}
         onChange={(e) => {
           setNameInput(e.target.value);
@@ -52,7 +55,7 @@ export const CreateDogForm = () => {
         id=""
         cols={80}
         rows={10}
-        disabled={false}
+        disabled={isLoading}
         value={descriptionInput}
         onChange={(e) => {
           setDescriptionInput(e.target.value);
@@ -67,13 +70,17 @@ export const CreateDogForm = () => {
       >
         {Object.entries(dogPictures).map(([label, pictureValue]) => {
           return (
-            <option value={pictureValue} key={pictureValue}>
+            <option
+              value={pictureValue}
+              key={pictureValue}
+              disabled={isLoading}
+            >
               {label}
             </option>
           );
         })}
       </select>
-      <input type="submit" />
+      <input type="submit" disabled={isLoading} />
     </form>
   );
 };

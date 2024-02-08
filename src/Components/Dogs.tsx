@@ -2,6 +2,7 @@
 // Todo: Refactor to get rid of props (THERE SHOULD BE NO PROPS DRILLING ON THIS COMPONENT)
 
 import { useDogs } from "../Providers/DogsProvider";
+import { Dog } from "../types";
 import { DogCard } from "./DogCard";
 
 export const Dogs = () =>
@@ -14,6 +15,14 @@ export const Dogs = () =>
       patchFavoriteDog,
       selectedComponent,
     } = useDogs();
+
+    const handleTrashIconClick = (id: number) => {
+      deleteDogRequest(id).catch((error) => console.error(error));
+    };
+
+    const handleHeartClick = (dog: Dog) => {
+      patchFavoriteDog(dog, dog.id).catch((error) => console.error(error));
+    };
 
     const filteredDogs = allDogs.filter((dog): boolean => {
       switch (selectedComponent) {
@@ -38,9 +47,9 @@ export const Dogs = () =>
           <DogCard
             key={dog.id}
             dog={dog}
-            onTrashIconClick={() => deleteDogRequest(dog.id)}
-            onHeartClick={() => patchFavoriteDog(dog, dog.id)}
-            onEmptyHeartClick={() => patchFavoriteDog(dog, dog.id)}
+            onTrashIconClick={() => handleTrashIconClick(dog.id)}
+            onHeartClick={() => handleHeartClick(dog)}
+            onEmptyHeartClick={() => handleHeartClick(dog)}
             isLoading={isLoading}
           />
         ))}

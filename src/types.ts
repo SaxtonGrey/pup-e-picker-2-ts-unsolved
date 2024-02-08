@@ -19,7 +19,7 @@ export type TSelectedComponent =
 export type TDogProvider = {
   allDogs: Dog[];
   isLoading: boolean;
-  PostDog: (newDog: Omit<Dog, "id">) => Promise<void>;
+  postDog: (newDog: Omit<Dog, "id">) => Promise<void>;
   deleteDogRequest: (id: number) => Promise<void>;
   patchFavoriteDog: (newDogData: Dog, id: number) => Promise<void>;
   selectedComponent: TSelectedComponent;

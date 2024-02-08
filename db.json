@@ -1,130 +1,109 @@
 {
   "dogs": [
     {
+      "id": 0,
       "name": "Jonatan",
-      "image": "/public/assets/boxer.png",
+      "image": "/assets/boxer.png",
       "description": "Shoes after Dollar Marketing female generating Diesel",
-      "isFavorite": true,
-      "id": 0
+      "isFavorite": false
     },
     {
       "name": "Anthony",
-      "image": "/public/assets/cowardly.png",
+      "image": "/assets/cowardly.png",
       "description": "plum Savings female Ghana programming solutions miniaturise",
       "isFavorite": true,
       "id": 1
     },
     {
+      "id": 4,
       "name": "Ana",
-      "image": "/public/assets/boxer.png",
+      "image": "/assets/boxer.png",
       "description": "Analyst function withdrawal United while",
-      "isFavorite": true,
-      "id": 4
+      "isFavorite": true
     },
     {
       "name": "Alfred",
-      "image": "/public/assets/cowardly.png",
+      "image": "/assets/cowardly.png",
       "description": "Northwest DRAM henry applications South",
       "isFavorite": true,
       "id": 5
     },
     {
       "name": "Violette",
-      "image": "/public/assets/boxer.png",
+      "image": "/assets/boxer.png",
       "description": "embrace Web Southwest perspiciatis though",
       "isFavorite": true,
       "id": 6
     },
     {
       "name": "Kenton",
-      "image": "/public/assets/cowardly.png",
+      "image": "/assets/cowardly.png",
       "description": "Bedfordshire Human tempora Managed Electronic Directives Nissan expedite",
       "isFavorite": true,
       "id": 7
     },
     {
       "name": "Asa",
-      "image": "/public/assets/dalmation.png",
+      "image": "/assets/dalmation.png",
       "description": "Minivan Neither Road Movies radian",
       "isFavorite": true,
       "id": 8
     },
     {
       "name": "Nicolas",
-      "image": "/public/assets/chihuahua.avif",
+      "image": "/assets/chihuahua.avif",
       "description": "an Savings brink transmit card",
       "isFavorite": true,
       "id": 9
     },
     {
       "name": "Elton",
-      "image": "/public/assets/blue-heeler.png",
+      "image": "/assets/blue-heeler.png",
       "description": "Nihonium Electronic Nissan Metal because Computer white",
       "isFavorite": false,
       "id": 10
     },
     {
       "name": "Dewayne",
-      "image": "/public/assets/dalmation.png",
+      "image": "/assets/dalmation.png",
       "description": "Security override firewall Southeast apropos Usability orchid barrel",
       "isFavorite": false,
       "id": 11
     },
     {
       "name": "Art",
-      "image": "/public/assets/blue-heeler.png",
+      "image": "/assets/blue-heeler.png",
       "description": "Global ha Genderflux payment Metal pixel Money",
       "isFavorite": false,
       "id": 12
     },
     {
       "name": "Sebastian",
-      "image": "/public/assets/boxer.png",
+      "image": "/assets/boxer.png",
       "description": "Associate Gasoline Savings Hybrid Developer",
       "isFavorite": false,
       "id": 13
     },
     {
       "name": "Lambert",
-      "image": "/public/assets/chihuahua.avif",
+      "image": "/assets/chihuahua.avif",
       "description": "drive reek Marvin compress executive Coordinator Track bluetooth",
       "isFavorite": false,
       "id": 14
     },
     {
-      "name": "Kris",
-      "image": "/public/assets/blue-heeler.png",
-      "description": "Beryllium Chevrolet partnerships focus Southeast Poland salmon",
-      "isFavorite": false,
-      "id": 15
-    },
-    {
-      "name": "Trudie",
-      "image": "/public/assets/boxer.png",
-      "description": "connecting blue National Movies Interactions ack Tandem Shirt",
-      "isFavorite": false,
-      "id": 16
-    },
-    {
       "name": "Meaghan",
-      "image": "/public/assets/dalmation.png",
+      "image": "/assets/dalmation.png",
       "description": "lux Manager North applications Rufiyaa",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 17
     },
     {
-      "name": "Test Test",
-      "description": "tesztagga",
-      "image": "/assets/blue-heeler.png",
+      "name": "Doggy Dogman",
+      "description": "asdhjkfakhjfas",
+      "image": "/assets/chihuahua.avif",
       "isFavorite": false,
-      "id": 20
-    },
-    {
-      "name": "Anotha one",
-      "description": "dsjafh",
-      "image": "/assets/dalmation.png",
-      "isFavorite": false,
-      "id": 21
+      "id": 18
     }
   ]
 }

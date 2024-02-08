@@ -25,22 +25,19 @@ export const DogsProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const refetch = async () => {
-    setIsLoading(true);
     try {
-      let data: Dog[] = await Requests.getAllDogs();
+      const data: Dog[] = await Requests.getAllDogs();
       setAllDogs(data);
     } catch (error) {
       console.error("Error fetching data");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    refetch();
+    refetch().catch((error) => console.error("Error Fetching: ", error));
   }, []);
 
-  const PostDog = async (input: Omit<Dog, "id">) => {
+  const postDog = async (input: Omit<Dog, "id">) => {
     setAllDogs((prevDogs) => [...prevDogs, { ...input, id: prevDogs.length }]);
     setIsLoading(true);
     try {
@@ -57,15 +54,12 @@ export const DogsProvider = ({ children }: { children: ReactNode }) => {
   const deleteDogRequest = async (id: number) => {
     const currentDogs = allDogs; // To revert state back too in event of failed fetch
     setAllDogs((prevDogs) => prevDogs.filter((d) => d.id != id));
-    setIsLoading(true);
     try {
       await Requests.deleteDogRequest(id);
       toast.success("Dog Deleted Successfully!");
     } catch (error) {
       setAllDogs(currentDogs);
       toast.error("Error deleting dog");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -75,7 +69,6 @@ export const DogsProvider = ({ children }: { children: ReactNode }) => {
         d.id === dog.id ? { ...d, isFavorite: !d.isFavorite } : d
       )
     );
-    setIsLoading(true);
     try {
       await Requests.patchFavoriteForDog(
         { ...dog, isFavorite: !dog.isFavorite },
@@ -88,8 +81,6 @@ export const DogsProvider = ({ children }: { children: ReactNode }) => {
         )
       );
       toast.error("Error updating dog");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -98,7 +89,7 @@ export const DogsProvider = ({ children }: { children: ReactNode }) => {
       value={{
         allDogs,
         isLoading,
-        PostDog,
+        postDog,
         deleteDogRequest,
         patchFavoriteDog,
         selectedComponent,

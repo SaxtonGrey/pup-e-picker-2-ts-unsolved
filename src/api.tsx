@@ -1,9 +1,11 @@
-import { Dog } from "./types";
+import { Dog, dogSchema } from "./types";
 
 const baseUrl = "http://localhost:3000/dogs";
 
 const getAllDogs = (): Promise<Dog[]> => {
-  return fetch(`${baseUrl}`).then((response) => response.json());
+  return fetch(`${baseUrl}`)
+    .then((response) => response.json())
+    .then((data: Dog[]) => data.map((item) => dogSchema.parse(item)));
 };
 
 const postDog = (newDog: Omit<Dog, "id">): Promise<Dog> => {
@@ -13,18 +15,22 @@ const postDog = (newDog: Omit<Dog, "id">): Promise<Dog> => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(newDog),
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .then((data) => dogSchema.parse(data));
 };
 
-const deleteDogRequest = (id: number): Promise<Dog> => {
+const deleteDogRequest = (id: number) => {
   return fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
   }).then((response) => {
-    return response.json();
+    if (!response.ok) {
+      throw new Error(`Failed to delete the dog. Status: ${response.status}`);
+    }
   });
 };
 
-const patchFavoriteForDog = (newDogData: Dog, id: number): Promise<Dog> => {
+const patchFavoriteForDog = (newDogData: Dog, id: number) => {
   return fetch(`${baseUrl}/${id}`, {
     method: "PUT",
     headers: {
@@ -38,9 +44,7 @@ const patchFavoriteForDog = (newDogData: Dog, id: number): Promise<Dog> => {
       }
       return response.json();
     })
-    .catch((error) => {
-      throw error;
-    });
+    .then((data) => dogSchema.parse(data));
 };
 
 export const Requests = {
